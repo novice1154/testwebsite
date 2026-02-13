@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open this right now!!</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            overflow-x: hidden;
+        }
+        #main-container {
+            background: white;
+            border: 5px pink dotted;
+            display: inline-block;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            margin: 10px;
+        }
+        #yesBtn { background-color: #ff4d4d; color: white; }
+        #noBtn { background-color: #808080; color: white; position: relative; }
+        
+        #funnyImage {
+            width: 250px;
+            margin-top: 20px;
+            display: none;
+            border: 3px solid #000;
+        }
+        #warningText { color: red; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div id="main-container">
+    <h1 id="question">Will you be my Valentine? ❤️. Answer right else will leak your secrets. </h1>
+    
+    <div id="content">
+        <button id="yesBtn" class="btn" onclick="sayYes()">YES</button>
+        <button id="noBtn" class="btn" onmouseover="moveNo()" onclick="moveNo()">NO</button>
+    </div>
+
+    <p id="warningText"></p>
+    <img id="funnyImage" src="" alt="Funny Leak">
+</div>
+
+<script>
+    let noCount = 0;
+    const warnings = [
+        "Are you sure? This is your first warning...",
+        "I'm serious! I'll post the these photos!",
+        "Okay, look at this one. Do you want the world to see this?",
+        "Final chance before I send these to panch  aunties",
+        "Stop clicking NO! Look at your face here 😂. Leak cheyala? musukoni yes nokku :)"
+    ];
+
+    const images = ["01.jpeg", "05.jpeg", "03.jpeg", "04.jpeg"];
+
+    function moveNo() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        const noBtn = document.getElementById('noBtn');
+        noBtn.style.position = "fixed";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+
+        if (noCount < warnings.length) {
+            document.getElementById('warningText').innerText = warnings[noCount];
+            const img = document.getElementById('funnyImage');
+            img.src = images[noCount % images.length]; 
+            img.style.display = "block";
+            noCount++;
+        }
+    }
+
+    function sayYes() {
+        document.getElementById('main-container').innerHTML = `
+            <h1 style="font-size: 50px;">Hehe, I knew you'd say yes! 🥰</h1>
+            <p>You made the right choice pellam . No leaking today!</p>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwaG50Z3R3eXN6eHpsbmx6eHpsbmx6eHpsbmx6eHpsbmx6eHpsJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KztT2c4u8mYYUiMKdJ/giphy.gif" width="300">
+        `;
+    }
+</script>
+
+</body>
+</html>
